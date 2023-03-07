@@ -51,8 +51,6 @@
   
   - delete-max : max값을 지우고 남은 값들도 힙을 유지할 수 있음
 
-----
-
 ## <힙 make_heap연산>
 
 ![](week5_윤선영.md_assets/2023-03-01-17-33-19-image.png)
@@ -113,8 +111,6 @@
 
 - leaf 노드에 가까운 노드에서 heapify-down을 수행하면 사실 O(logn)만큼의 시간도 소요되지 않음! 따라서 make-heap의 수행시간은 O(n)이라고 할 수 있음!
 
----
-
 ## <힙 insert/delete_max연산>
 
 ### insert 연산
@@ -153,9 +149,9 @@
 
 ![](week5_윤선영.md_assets/2023-03-01-19-15-47-image.png)
 
-- find_max : return A[0]
+- find_max : return A[0] **O(1)**
 
-- delete_max 
+- delete_max : heapify-down(0, n) 연산 수행 **O(logn)**
   
   - A[0] 삭제, 루트노드가 없어지므로 이를 채워주어야함
   
@@ -166,5 +162,29 @@
   - 힙 성질을 만족하지 않기 때문에 만족할때까지 자리를 이동시켜주어야 함
   
   - 8의 자식노드인 A[1], A[2]와 비교했을 때 왼쪽 자식노드인 A[1]이 12로 더 크기 때문에 자리를 변경해줌
+    
+    ![](week5_윤선영.md_assets/2023-03-07-22-39-03-image.png)
   
-  - 
+  - A[1] 자리에 온 8의 자식노드인 A[3], A[4]와 비교했을 때 둘 모두 8보다 크기 때문에, 그 중 더 큰 값인 A[3], 11과 자리를 바꿔줌
+    
+    ![](week5_윤선영.md_assets/2023-03-07-22-40-35-image.png)
+  
+  -  A[3] 자리에 온 8의 자식노드 A[7]과 비교했을 때, 8이 더 크므로 자리변경X
+
+### delete_max 연산 sudo코드
+
+![](week5_윤선영.md_assets/2023-03-07-22-48-15-image.png)
+
+- key에 A[0] (max값) 저장, 이 값과 가장 마지막 노드의 값을 바꿔준 후 A.pop()
+
+- heapify_down(0, len(A)) 연산 수행
+
+## <힙 heap 정리>
+
+### max_heap
+
+![](week5_윤선영.md_assets/2023-03-07-22-51-19-image.png)
+
+### min_heap : heapify_down 연산 수행 시 swap을 반대로 하면됨
+
+![](week5_윤선영.md_assets/2023-03-07-22-59-19-image.png)
